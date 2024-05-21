@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SEC Fillings</title>
+</head>
+<body>
+  <h1>SEC Fillings</h1>
+  <form method="GET" action="{% url 'secFillings' %}">
+    <label for="ticker">Enter Ticker:</label>
+    <input type="text" id="ticker" name="ticker" required>
+    <input type="submit" value="Get SEC Fillings">
+  </form>
+  {% if reports and not all(report == "No report found" for report in reports.values) %}
+      <h2>Reports</h2>
+      <ul>
+        {% for report_type, report in reports.items %}
+          <li><strong>{{ report_type }}:</strong> {{ report }}</li>
+        {% endfor %}
+      </ul>
+  {% endif %}
+</body>
+</html>
